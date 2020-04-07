@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>change picture</title>
+    <script>
+        /*
+        * 1 点击事件onclick
+        * 2 事件触发函数changeImg
+        * 3 在函数中*/
+        function changeImg() {
+            var img =document.getElementById("img1");
+            img.src="../img/2.jpg";
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="点击切换" onclick="changeImg()"><br>
+    <img src="../img/1.jpg" id="img1">
+</body>
+</html>

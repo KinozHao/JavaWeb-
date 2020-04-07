@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的页面校验</title></title>
+    <script>
+        function checkFrom() {      //定义函数
+            //获取用户名的输入内容
+            var input1 =document.getElementById("username");
+            var uVaule =input1.value;
+            if (uVaule.length >= 6){
+
+            }else {
+                alert("You inter to shot");
+
+                return false;
+            }
+
+
+            //邮箱的校验 获取用户输入的邮箱值
+            var Email =document.getElementById("email");
+            var Umask =Email.value;
+            //.test检验字符串中指定的值,返回true或者false
+            if (/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test("Umask")){
+                alert("Success");
+            }else {
+                alert("failed");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+        <form action="网站首页优化.html" onsubmit="return checkFrom()">
+            Name:<input type="text" id="username"/><br>
+            Password:<input type="password" id="password"/><br>
+            Email:<input type="email" id="email"/><br>
+            <input type="submit" value="over"/>
+        </form>
+</body>
+</html>

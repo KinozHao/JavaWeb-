@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //创建一个应用，宽500，高500
+        var app = new PIXI.Application(500,800);
+        //将应用显示到浏览器中
+        document.body.appendChild(app.view);
+
+
+
+        //创建图片对象
+        var beijing = new PIXI.Sprite.fromImage("res/lianxi/qsqx/beijing.png");
+        //将图片添加到应用中
+        app.stage.addChild(beijing);
+
+        //创建图片对象
+        var csd = new PIXI.Sprite.fromImage("res/lianxi/qsqx/chuansongdai.png");
+        csd.y = 232;
+        //将图片添加到应用中
+        app.stage.addChild(csd);
+
+        //创建图片对象
+        var hongdi = new PIXI.Sprite.fromImage("res/lianxi/qsqx/hongdi.png");
+        hongdi.y = 535;
+        //将图片添加到应用中
+        app.stage.addChild(hongdi);
+
+
+
+        //创建图片对象
+        var shouyintai = new PIXI.Sprite.fromImage("res/lianxi/qsqx/shouyintai.png");
+        shouyintai.y = 520;
+        //将图片添加到应用中
+        app.stage.addChild(shouyintai);
+
+        //创建图片对象
+        var xia = new PIXI.Sprite.fromImage("res/lianxi/qsqx/xia.png");
+        xia.x = 40;
+        xia.y = 90;
+        //将图片添加到应用中
+        shouyintai.addChild(xia);
+
+        //创建图片对象
+        var qi = new PIXI.Sprite.fromImage("res/lianxi/qsqx/btn7.png");
+        //将图片添加到应用中
+        qi.x = 190;
+        qi.y = 90;
+        shouyintai.addChild(qi);
+
+        //创建图片对象
+        var shang = new PIXI.Sprite.fromImage("res/lianxi/qsqx/shang.png");
+        //将图片添加到应用中
+        shang.x = 340;
+        shang.y = 90;
+        shouyintai.addChild(shang);
+
+
+
+        //创建图片对象
+        var dui = new PIXI.Sprite.fromImage("res/lianxi/qsqx/dui.png");
+        dui.x = 110;
+        dui.y = 12;
+        //将图片添加到应用中
+        shouyintai.addChild(dui);
+
+        //创建图片对象
+        var cuo = new PIXI.Sprite.fromImage("res/lianxi/qsqx/cuo.png");
+        cuo.x = 55;
+        cuo.y = 12;
+        //将图片添加到应用中
+        shouyintai.addChild(cuo);
+        dui.visible = false;
+        cuo.visible = false;
+
+
+
+        //创建图片对象
+        var beiban = new PIXI.Sprite.fromImage("res/lianxi/qsqx/beiban.png");
+        beiban.x = 20;
+        beiban.y = 130;
+        //将图片添加到应用中
+        //app.stage.addChild(beiban);
+
+        //创建图片对象
+        var kaishidi = new PIXI.Sprite.fromImage("res/lianxi/qsqx/kaishidi.png");
+        //将图片添加到应用中
+        kaishidi.x = 20;
+        kaishidi.y = 80;
+        app.stage.addChild(kaishidi);
+
+        //创建图片对象
+        var start = new PIXI.Sprite.fromImage("res/lianxi/qsqx/start.png");
+        start.x = 120;
+        start.y = 400;
+        //将图片添加到应用中
+        kaishidi.addChild(start);
+
+        var style = new PIXI.TextStyle( {
+            fontFamily: 'Arial',
+            fontSize: 40,
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+            fill:'#ffffff',
+        });
+
+        var defen = new PIXI.Text("得分: 0",style);
+        defen.x = 10;
+        defen.y = 20;
+        beijing.addChild(defen);
+
+        var boxlist = [];
+        var boxarr = [];
+        var boxnumarr = [];
+        sc_all_move = false;
+        var defenbiao = 0;
+
+        for(var i=0;i<=7;i++){
+            var box = "res/lianxi/qsqx/daizi1.png";
+
+            boxlist[i-1] =  box;
+        }
+
+        start.interactive = true;
+        start.on("click",start_click);
+
+        function start_click(){
+            kaishidi.visible = false;
+
+            app.ticker.add(allarrs);
+
+            shang.interactive = true;
+            shang.on("click",shang_click);
+
+            qi.interactive = true;
+            qi.on("click",qi_click);
+
+            xia.interactive = true;
+            xia.on("click",xia_click);
+
+        }
+
+        allover = true;
+
+        function allarrs(){
+            if(allover){
+                csdmove();
+                judge();
+                boxmove();
+                sc_allarrs();
+            }
+        }
+
+        function csdmove(){
+            csd.x -=2;
+
+            if(csd.x < -100){
+                csd.x = 0;
+            }
+        }
+
+        function boxmove(){
+            if(boxarr.length !=0){
+                for(var i=0;i<boxarr.length;i++){
+                    var boxobj = boxarr[i];
+                    boxobj.x -=2;
+                    if(boxobj.x == -50){
+                        gameover();
+                    }
+                }
+            }
+        }
+
+        function newbox(){
+            var bnum =Math.round(Math.random()*6);
+            var tnum =Math.round(Math.random()*13+1);
+
+            var boxobj = new PIXI.Sprite.fromImage(boxlist[bnum]);
+            boxobj.anchor.set(0.5,0.5);
+            boxobj.x = 600;
+            boxobj.y = Math.round(Math.random()*230+230);
+
+            boxarr.push(boxobj);
+            boxnumarr.push(tnum);
+
+            var style = new PIXI.TextStyle( {
+                fontFamily: 'Arial',
+                fontSize: 40,
+                fontStyle: 'italic',
+                fontWeight: 'bold',
+                fill:'#3333333',
+            });
+
+            var textnum = new PIXI.Text(tnum,style);
+            boxobj.addChild(textnum);
+            app.stage.addChild(boxobj);
+        }
+
+        function judge(){
+            var length = boxarr.length;
+            if(length <= 0){
+                newbox();
+            }
+            if(length > 0 && boxarr[length-1].x < 300){
+                newbox();
+            }
+        }
+
+        function shang_click(){
+            if(boxnumarr[0] < 7){
+                sc_all_move = true;
+            }else{
+                gameover();
+            }
+        }
+
+
+        function qi_click(){
+            if(boxnumarr[0] == 7){
+                sc_all_move = true;
+            }else{
+                gameover();
+            }
+        }
+
+        function xia_click(){
+            if(boxnumarr[0] > 7){
+                sc_all_move = true;
+            }else{
+                gameover();
+            }
+        }
+
+
+
+        function sc_allarrs(){
+            if(sc_all_move){
+                dui.visible= true;
+                cuo.visible= false;
+                app.stage.addChild(shouyintai);
+
+                boxarr[0].x +=2;
+                boxarr[0].y +=8;
+                if(boxarr[0].y > 700){
+                    app.stage.removeChild(boxarr[0]);
+                    boxarr.splice(0,1);
+                    boxnumarr.splice(0,1);
+                    sc_all_move = false;
+                    defenbiao++;
+                    defen.text = "得分:"+defenbiao;
+                }
+            }
+        }
+
+        function gameover(){
+            allover = false;
+
+            var style = new PIXI.TextStyle( {
+                fontFamily: 'Arial',
+                fontSize: 40,
+                fontStyle: 'italic',
+                fontWeight: 'bold',
+                fill:'#ffffff',
+            })
+
+            var ltxt = new PIXI.Text("得分:"+defenbiao,style);
+            ltxt.anchor.set(0.5,0.5);
+            ltxt.x = 220;
+            ltxt.y = 300;
+            beiban.addChild(ltxt);
+            dui.visible = false;
+            cuo.visible = true;
+            shouyintai.addChild(dui);
+
+            beiban.alpha = 0.8;
+            app.stage.addChild(beiban);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

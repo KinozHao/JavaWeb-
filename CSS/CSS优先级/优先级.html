@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS优先级学习</title>
+    <style>
+        /*行内样式>ID选择器>类选择器>元素选择器*/
+        .Go{
+            color: pink;
+            font-size: large;
+            text-align: center;
+        }
+        #me{
+            color: red;
+            font-size: larger;
+            text-align: center;
+        }
+        div{
+            color: yellow;
+            font-size: x-large;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="Go" id="me" style="text-align: center;color: darkcyan">Hello world</div>
+</body>
+</html>

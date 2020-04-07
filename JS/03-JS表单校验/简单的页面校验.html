@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--
+        1 确定事件 onfocus
+        2 事件要驱动函数
+        3 函数要做的事情 修改span内容
+    -->
+    <script type="text/javascript" src="../regutils.js"></script><!--导入外部js文件-->
+    <script>
+        function element(spanID,msg) {
+            //首先获得要操作的元素 span
+            var span = document.getElementById(spanID);
+            span.innerHTML= msg;
+        }
+
+        /*
+        * 校验用户名
+        * 1 事件 onblur 失去焦点
+        * 2 函数 checkUsername()
+        * 2 函数去显示校验结果
+        * */
+        function checkUsername() {
+
+
+            //获取用户输入的内容
+            var uvalue =document.getElementById("username").value;
+            //获取要显示结果的span
+            var span =document.getElementById("username_span");
+            //对输入的内容进行校验
+            if (uvalue.length < 6){
+                //显示校验结果
+                span.innerHTML="<font size='2' color='#ff69b4'>用户名不ok</font>";
+                return false;
+            }else {
+                span.innerHTML="<font size='2' color='red'>√</font>";
+                return true;
+            }
+        }
+
+        function checkPassword() {
+            //获取用户输入的内容
+            var uPass =document.getElementById("secret").value;
+            //获取要显示结果的span
+            var span = document.getElementById("password_span");
+            //输入内容进行校验
+            if (uPass.length < 6){
+                //显示校验结果
+                span.innerHTML="<font size='2' color='#ff69b4'>密码不ok</font>";
+                return false;
+            }else {
+                span.innerHTML="<font size='2' color='red'>√</font>";
+                return true;
+            }
+        }
+
+        function checkRePassword() {
+            /*
+            * 同时获取 密码 和 确认密码的输入内容
+            * 然后获取要显示结果的span
+            * */
+            var uPass =document.getElementById("secret").value;
+            var uRpass = document.getElementById("secretagain").value;
+            var span = document.getElementById("span_repassword");
+
+            //判断两次密码是否一致
+            if (uRpass != uPass){
+                //显示校验结果
+                span.innerHTML="<font size='2' color='#ff69b4'>密码不ok</font>";
+                return false;
+            }else {
+                span.innerHTML="<font size='2' color='red'>√</font>";
+                return true;
+            }
+        }
+
+        function checkMail() {
+            var umail = document.getElementById("emails").value;
+
+            var flag = checkEmail(umail);       //引进js文件里面的方法
+
+            var span = document.getElementById("span_email"); //显示结果的span
+
+            if (flag){
+                span.innerHTML="<font size='2' color='red'>√</font>";
+                return true;
+            }else {
+                span.innerHTML="<font size='2' color='#ff69b4'>邮箱不可用</font>";
+                return false;
+            }
+        }
+
+        function checkSJH() {
+            var usjh = document.getElementById("phoneNum").value;
+
+            var flags =checkMobile(usjh);
+
+            var span = document.getElementById("span_mobile");
+            if (flags){
+                span.innerHTML="<font size='2' color='red'>√</font>";
+                return true;
+            }else {
+                span.innerHTML="<font size='2' color='#ff69b4'>号码格式不正确</font>";
+                return false;
+            }
+        }
+
+        function checkAAAAA(){
+            var flag = checkUsername() && checkPassword() && checkRePassword() && checkMail() && checkSJH();
+
+            return flag;
+        }
+    </script>
+</head>
+<body>
+<form action="../01-自动轮播图片/图片自动播放.html" onsubmit="return checkAAAAA()">
+    <!--三个事件的作用
+        onfocus 获取焦点
+        onblur 失去焦点
+        onkeyup 按键拾起事件
+        span标签的作用在每个书写框后见添加提示文字
+     -->
+    姓名:<input type="text" id="username"  onfocus="element('username_span','用户名不可小于6位数')"  onblur="checkUsername()" onkeyup="checkUsername()">
+    <span id="username_span"></span><br>
+    密码:<input type="password" id="secret" onfocus="element('password_span','密码长度不可小于6位数')" onblur="checkPassword()" onkeyup="checkPassword()">
+    <span id="password_span"></span><br>
+    确认密码:<input type="password" id="secretagain" onfocus="element('span_repassword','两次密码不一样')" onblur="checkRePassword()" onkeyup="checkRePassword()">
+    <span id="span_repassword"></span><br>
+    邮箱:<input type="email" id="emails" onfocus="element('span_email','邮箱格式必须正确')" onblur="checkMail()">
+    <span id="span_email"></span><br>
+    TEL:<input type="text" id="phoneNum" onfocus="element('span_mobile','手机号码有误')" onblur="checkSJH()">
+    <span id="span_mobile"></span><br>
+    <input type="submit" value="提交" />
+</form>
+</body>
+</html>

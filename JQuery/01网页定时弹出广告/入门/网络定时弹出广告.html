@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+
+    <script>
+        //显示广告
+        function showAD(){
+            // $("#img1").show();
+            $("#img1").slideDown(2000);     //一种平滑的方式比单纯的show看起来更加舒服一点
+
+            setTimeout("hideAD()",3000)
+        }
+
+        //隐藏广告
+        function hideAD(){
+            // $("#img1").hide();
+            $("#img1").slideUp(2000);
+        }
+
+        $(function () {
+                setTimeout("showAD()",3000)
+        })
+    </script>
+</head>
+<body>
+    <img src="28.jpg" width="1600" height="800" id="img1" style="display: none">
+</body>
+</html>

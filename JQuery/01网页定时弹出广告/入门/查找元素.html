@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+
+    <script>
+        window.onload = function () {
+            alert("windows.onload")
+        }
+
+
+        /*jq的文档加载完成事件*/
+        jQuery(document).ready(function () {
+           alert("hello world")
+        });
+        $(document).ready(function () {
+            alert("hello world$$$$$")
+        });
+
+        $(function () {
+            alert("money$$$")
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

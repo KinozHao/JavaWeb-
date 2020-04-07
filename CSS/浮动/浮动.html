@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS浮动学习</title>
+    <style>
+        .us{
+            width: 220px; height: 200px; background-color: palegreen;
+        }
+    </style>
+</head>
+<body>
+<!--
+   CSS浮动:浮动的元素会脱离正常的文档流,在正常的文档流中不占空间
+   float属性: left right
+   clear属性:清除浮动
+-->
+        <div style="float: left;width: 200px; height: 200px; background-color: deepskyblue;"></div>
+        <div style="clear: both;"></div> <!--clear为清除标签-->
+        <div class="us">PartA</div>
+        <div class="us">PartB</div>
+</body>
+</html>

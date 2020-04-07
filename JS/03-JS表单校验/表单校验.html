@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单校验</title>
+    <script>
+        function spanss(span,msg) {
+            var vr =document.getElementById(span);
+            span.innerHTML =msg;
+        }
+
+        function runs() {
+            //alert(this); 隐藏属性 不写默认也会提示
+            var vr =document.getElementById("user").value;
+            var go =document.getElementById("spanuser");
+
+            if (vr.length < 6){
+                go.innerHTML="<font color='#ff69b4'><B>To shot</B></font>";
+                return false;
+            } else {
+                go.innerHTML="<font color='#ff69b4'><B>√</B></font>";
+                return true;
+            }
+        }
+
+        function checkbiaoqian() {
+            var flag =runs();
+
+            return flag;
+        }
+    </script>
+</head>
+<body>
+    <form action="https://www.runoob.com/" onsubmit="return checkbiaoqian()">
+Name:<input type="text" id="user" onfocus="spanss('spanuser','None only 6')" onblur="runs()" onkeyup="runs()"> <span id="spanuser"></span>
+    <br><input type="submit" value="Login">
+    </form>
+</body>
+</html>

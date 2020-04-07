@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        function method() {
+            //alert("I'm checked");
+            var div = document.getElementById("div1");
+            //innerHTML and innerText的区别在于一个可以添加html标签 一个只能显示文字
+            div.innerHTML ="<font color='#db7093'>CHANGED YOHO</font>";
+            //div.innerText ="GOGOGO";
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Check here" onclick="method()">
+
+    <div id="div1">
+        Here word will done later
+    </div>
+</body>
+</html>

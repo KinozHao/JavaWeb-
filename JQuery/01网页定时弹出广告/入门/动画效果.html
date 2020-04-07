@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.11.0.js"></script>
+    <script>
+        $(function () {
+
+            $("#btn1").click(function () {
+                // $("#img1").show();
+                $("#img1").slideDown(2000);
+            });
+            
+            $("#btn2").click(function () {
+                // $("#img1").hide();
+                $("#img1").slideUp(2000);
+            })
+        })
+    </script>
+</head>
+<body>
+    <input type="button" value="SHOW" id="btn1">
+    <input type="button" value="HIDE" id="btn2">
+    <img src="28.jpg" width="1600" height="800" id="img1">
+</body>
+</html>

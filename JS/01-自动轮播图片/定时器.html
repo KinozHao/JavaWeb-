@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+    <script>
+        //window 对象是一个顶层对象 可以省略不写
+       // window.setInterval("text()",2000);
+
+        function text() {
+            console.log("计时器被打开了");
+        }
+        //setInterval("text()",2000);
+        setTimeout("text()",2000);      //两秒钟执行一次后就不再执行了
+        var timerID;
+        function startDSJ() {
+            timerID =setInterval("text()",2000);
+        }
+        function stopDSJ() {
+            clearInterval(timerID);
+            console.log("计时器关闭")
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="打开计时器" onclick="startDSJ()"><Br>
+    <input type="button" value="关闭计时器" onclick="stopDSJ()"><Br>
+</body>
+</html>

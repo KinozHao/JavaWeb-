@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table change color</title>
+    <script>
+        /*
+        * 确定事件 文档加载完成 onload
+        * 事件触发函数 iinit()
+        * 函数做一些交互 操作页面的元素
+        *       要操作表格中的每一行
+        *       做动态的修改行的背景颜色
+        * */
+        function iinit() {
+            //得到表格
+            var tab = document.getElementById("tab");
+            //得到表格中每一行
+            var rows = tab.rows;        //rows方法获取每一行
+            //遍历所有行 然后根据奇数 偶数进行判断
+            for (var i = 0; i < rows.length ; i++) {
+                var row = rows[i];  //得到其中的某一行
+
+                if (i%2 === 0){
+                    row.bgColor ="pink";
+                }else {
+                    row.bgColor ="lightgreen";
+                }
+            }
+        }
+
+        /*
+        * 全选和全不选的步骤分析:
+        * 1 事件确定: onclick 单机事件
+        * 2 事件触发函数 checkAll()
+        * 3 函数要做事情
+        *       获取第一个checkbox状态
+        *       获取所有分类的checkbox
+        *       修改每一个checkbox状态
+        * */
+
+        function checkAll(){
+            //获取第一个checkbox状态
+            var check1 = document.getElementById("check1");
+            //得到当前checked状态
+            var checked = check1.checked();
+            //所有分类的checkbox
+            var checks = document.getElementsByName("checkone");
+            for (var i = 0; i <checks.length ; i++) {
+            //修改每一个checkbox状态
+                var checkone = checks[i];
+                checkone.checked = checked;
+            }
+        }
+    </script>
+</head>
+<body onload="iinit()">
+    <table border="1" width="800px" height="250px" id="tab">
+        <tr>
+            <td>
+                <input type="checkbox" onclick="checkAll()" id="check1">
+            </td>
+            <td>分类ID</td>
+            <td>分类名称</td>
+            <td>分类商品</td>
+            <td>分类描述</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="checkone">
+            </td>
+            <td>1</td>
+            <td>手机</td>
+            <td>一加 小米</td>
+            <td>这里卖手机</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="checkone">
+            </td>
+            <td>2</td>
+            <td>家电</td>
+            <td>冰箱 电视 空调</td>
+            <td>这里卖空调</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="checkone">
+            </td>
+            <td>3</td>
+            <td>电脑</td>
+            <td>ASUS ACER DELL HP THINKPAD</td>
+            <td>HERE IS COMPUTERS</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="checkone">
+            </td>
+            <td>4</td>
+            <td>鞋子包包</td>
+            <td>Nike Gucci Zara uniqlo</td>
+            <td>Here is close</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="checkbox" name="checkone">
+            </td>
+            <td>5</td>
+            <td>玩具</td>
+            <td>奥特曼 怪兽 挖土机</td>
+            <td>这里卖玩具</td>
+            <td>
+                <a href="#">Change</a>|
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
